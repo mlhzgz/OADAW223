@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- script que muestra un diálogo de intrada de datos del usuario -->
+        <!--<script src="script_dialogo.js" type="text/javascript"></script>-->
+        <script>
+            alert('hola que tal');
+        </script>
+    </head>
+    <body>
+        <script>
+            // Podemos escribir un salto de línea en una alerta
+            alert("hola\nmundo");
+
+            document.write("Esto es<br>un texto");
+        </script>
+
+        <!-- javascript en un evento de etiqueta HTML -->
+        <input type="button" value="púlsame" onclick="alert(confirm('Quieres pulsar este botón?'))" />
+
+        <!-- lanzamos una página nueva a partir de un botón -->
+        <input type="button" value="vete a Google" onclick="location.href = 'https://google.com'" />
+    </body>
+</html>

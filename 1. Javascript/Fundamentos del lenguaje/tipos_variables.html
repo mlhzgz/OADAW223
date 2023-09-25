@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            // tipos de datos de variables literales
+            let texto = "";
+            let numero = 2; // flotantes de 64 bits
+            let booleano = true;
+            let indefinido = undefined; // la variable no tiene valor
+            let indefinido2; // undefined
+            let nulo = null;
+            NaN; // not a number
+            "pepe";
+
+            // Arrays
+            const array = [2,3,4,5];
+            array[0] = "hola";
+            array[20] = true; // esto rellena elementos indefinidos entre dos valores válidos
+            document.write(array.length);
+            array.push("adios");
+
+            for (var x = 0; x < array.length; x++){
+                console.log(array[x]);
+            }
+
+            // un objeto es una estructura de datos que pueden contener valores separados
+            const objeto = {
+                nombre: "Pepe",
+                apellidos: "Ruiz",
+                ciudad: "Zaragoza",
+                mostrar: function() {
+                    document.write(this.nombre); // this -> objeto que se está ejecutando
+                }
+            };
+
+            document.write(objeto.nombre);
+
+            objeto.nombre = "Pepa";
+        </script>
+    </head>
+</html>

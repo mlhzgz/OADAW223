@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="script_global.js"></script>
+    <script>
+        // Ámbitos de ejecución de código Javascript
+
+        // ámbito global
+        mostrar();
+
+        // una variable global es aquella que existe en cualquier parte del código
+        // se defina donde se defina
+        variable_global = 2; // variable global
+        //document.write(variable_global);
+
+        // variables de función (sólo existen en el contexto de una función)
+        function variable() {
+            var variable_funcion = "1"; // variable de función
+            document.write("funcion: " + variable_funcion);
+        }
+
+        variable();
+        // esta instrucción producirá un error
+        //document.write("global: " + variable_funcion);
+
+        // variables de bloque
+        function variable_bloque() {
+            document.write("<br>");
+
+            for (let x = 0; x < 10; x++){ // variable de bloque
+                document.write(x + "<br>");
+            }
+
+            // si x es declarada con var, podremos usarla en la siguiente línea
+            document.write(x);
+        }
+
+        variable_bloque();
+
+        // variables constantes
+        // una constante no puede cambiar de valor, pero sí puede cambiar su contenido (elementos)
+        const constante = "hola";
+        constante = 1;
+    </script>
+</head>
+
+</html>
