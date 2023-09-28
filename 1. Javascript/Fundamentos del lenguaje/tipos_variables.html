@@ -28,14 +28,15 @@
                 nombre: "Pepe",
                 apellidos: "Ruiz",
                 ciudad: "Zaragoza",
-                mostrar: function() {
+                mostrar: function() { // podemos introducir funciones dentro de un objeto, y usarlos como un método
                     document.write(this.nombre); // this -> objeto que se está ejecutando
                 }
             };
 
             document.write(objeto.nombre);
 
-            objeto.nombre = "Pepa";
+            objeto.nombre = "Pepa"; // uso de la propiedad del objeto
+            objeto["apellidos"] = "Ruiz"; // uso del índice del objeto (mapa clave/valor)
         </script>
     </head>
 </html>

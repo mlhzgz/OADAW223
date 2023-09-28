@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            function funcion_multiple(...par) { // parámetro array
+                // en un parámetro de longitud variable, podemos poner o no argumentos, porque es un array
+                let valor = par[0]; // primer argumento del parámetro de longitud variable
+            }
+
+            // En Javascript podemos llamar a las funciones de forma libre, con o sin parámetros
+            // Hay que controlar que los parámetros esperados sean válidos (definidos)
+            function nombre_funcion(par1, par2, par3) {
+                par1 = par1 || 1; // valor por defecto: si un parámetro es undefined, podemos asignarle un valor antes de usarlo
+
+                document.write("parametro 1: " + par1 + "<br>");
+
+                // si el valor es indefinido, podemos predecirlo para reaccionar si es necesario
+                if (par2 == undefined) {
+                    document.write("el segundo parámetro es indefinido<br>");
+                }
+                else {
+                    document.write("parametro 2: " + par2 + "<br>");
+                }
+
+                // en caso de usar un parámetro indefinido, aparecerá el valor "undefined"
+                document.write("parametro 3: " + par3 + "<br>");
+            }
+
+            // Si llamamos a un método con parámetros que no se pueden usar, no podremos acceder a ellos
+            // (excepto si el parámetro que estamos usando es uno de longitud variable)
+            nombre_funcion(3, "hola", new Date("2023-09-27"), 6);
+        </script>
+    </head>
+</html>

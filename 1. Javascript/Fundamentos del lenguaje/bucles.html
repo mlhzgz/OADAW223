@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            let array = [1, 2, 3, 4, 5];
+
+            // for in
+            for (let item in array) {
+                document.write(item); // mostramos el índice
+            }
+            
+            document.write("<br>")
+
+            // for of
+            for (let item of array) {
+                document.write(item); // mostrar el valor
+            }
+
+            document.write("<br>")
+
+            let objeto = {
+                nombre: "Pepe",
+                ciudad: "Zaragoza",
+                edad: 20
+            };
+
+            for (let item in objeto) { // devuelve la propiedad del objeto
+                // podemos llamar a un objeto como si fuera un array con corchetes
+                document.write(item + "=" + objeto[item] + "<br>");
+            }
+
+            document.write("<br>")
+
+        </script>
+    </head>
+</html>
