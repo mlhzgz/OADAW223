@@ -1,34 +1,82 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <script>
-            function funcion_multiple(...par) { // parámetro array
-                // en un parámetro de longitud variable, podemos poner o no argumentos, porque es un array
-                let valor = par[0]; // primer argumento del parámetro de longitud variable
+
+<head>
+    <script>
+        function funcion_multiple(...par) { // parámetro array
+            // en un parámetro de longitud variable, podemos poner o no argumentos, porque es un array
+            if (par.length > 2)
+                return par[0] + 2; // primer argumento del parámetro de longitud variable
+
+            // podemos devolver o no un valor según las circunstancias
+            return;
+        }
+
+        // En Javascript podemos llamar a las funciones de forma libre, con o sin parámetros
+        // Hay que controlar que los parámetros esperados sean válidos (definidos)
+        function nombre_funcion(par1, par2, par3) {
+            par1 = par1 || 1; // valor por defecto: si un parámetro es undefined, podemos asignarle un valor antes de usarlo
+
+            //if (par1 == undefined) par = 1;
+
+            document.write("parametro 1: " + par1 + "<br>");
+
+            // si el valor es indefinido, podemos predecirlo para reaccionar si es necesario
+            if (par2 == undefined) {
+                document.write("el segundo parámetro es indefinido<br>");
+            }
+            else {
+                document.write("parametro 2: " + par2 + "<br>");
             }
 
-            // En Javascript podemos llamar a las funciones de forma libre, con o sin parámetros
-            // Hay que controlar que los parámetros esperados sean válidos (definidos)
-            function nombre_funcion(par1, par2, par3) {
-                par1 = par1 || 1; // valor por defecto: si un parámetro es undefined, podemos asignarle un valor antes de usarlo
+            // en caso de usar un parámetro indefinido, aparecerá el valor "undefined"
+            document.write("parametro 3: " + par3 + "<br>");
+        }
 
-                document.write("parametro 1: " + par1 + "<br>");
+        //nombre_funcion();
 
-                // si el valor es indefinido, podemos predecirlo para reaccionar si es necesario
-                if (par2 == undefined) {
-                    document.write("el segundo parámetro es indefinido<br>");
-                }
-                else {
-                    document.write("parametro 2: " + par2 + "<br>");
-                }
+        // Si llamamos a un método con parámetros que no se pueden usar, no podremos acceder a ellos
+        // (excepto si el parámetro que estamos usando es uno de longitud variable)
+        nombre_funcion(3, "hola", new Date("2023-09-27"), 6);
 
-                // en caso de usar un parámetro indefinido, aparecerá el valor "undefined"
-                document.write("parametro 3: " + par3 + "<br>");
+        // lambdas: funciones que actúan como datos y pueden pasarse como parámetros
+        const lambda_const = function () {
+            document.write("hola");
+        };
+
+        //lambda_const();
+
+        // esta función permite llamar a lambdas
+        function funcion_lambda(lambda) {
+            lambda();
+        }
+
+        funcion_lambda(lambda_const);
+
+        const lambda_const2 = function (texto) {
+            texto = texto || " que tal";
+            document.write(texto);
+        }
+
+        funcion_lambda(lambda_const2);
+
+        funcion_lambda(function () {
+            document.write(" lambda inline");
+        });
+
+        // funciones dentro de funciones
+        // son funciones que sólo existen dentro de otra función
+        function f1() {
+            function f2() { // función local
+                document.write("<br>f2");
             }
 
-            // Si llamamos a un método con parámetros que no se pueden usar, no podremos acceder a ellos
-            // (excepto si el parámetro que estamos usando es uno de longitud variable)
-            nombre_funcion(3, "hola", new Date("2023-09-27"), 6);
-        </script>
-    </head>
+            document.write("<br>f1");
+            f2(); // esta función sólo existe dentro de f1, no puede usarse fuera
+        }
+
+        f1();
+    </script>
+</head>
+
 </html>

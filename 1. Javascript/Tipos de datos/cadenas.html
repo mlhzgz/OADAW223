@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            // CADENAS DE TEXTO
+            let texto = "esto es un texto"; // inicialización estándar
+            texto = new String('texto'); // inicialización clásica (son equivalentes)
+
+            texto += " y otro texto"; // concatenación de cadenas
+
+            document.write(texto + "<br>");
+            let empieza = texto.startsWith("texto"); // comienza con prefijo
+            let termina = texto.endsWith("texto"); // termina con sufijo
+
+            // Funciones de eliminación de espacios al principio y al final
+            // trim: elimina espacios a ambos lados
+            // trimStart: elimina espacios al principio
+            // trimEnd: elimina espacios al final
+
+            // Subcadena dentro de otra
+            if (texto.includes("hola")){
+                document.write("lo incluye");
+            }
+            else {
+                document.write("no lo incluye");
+            }
+
+            // Localiza una subcadena y devuelve su posición (-1 si no la localiza)
+            document.write("<br>" + texto.indexOf("otro", 10));
+
+            // Divide una cadena en trozos (devuelve array)
+            const datos = "pepe,ana,luis,jaime".split(',');
+            document.write(datos);
+            
+            // Devuelve el trozo indicado por el rango (inicio inclusivo, final exclusivo)
+            document.write("<br>" + texto.substring(8, 12));
+        </script>
+    </head>
+    <body>
+        <input type="button" value="pulsar" onclick='location.href = "https://google.com"'/>
+    </body>
+</html>
