@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script>
+        // Arrays
+        const array1 = [1, 2, 3, 4];
+        const array2 = new Array(10); // inicializa con un número de elementos inicial
+        const array3 = new Array(); // = []
+        const array4 = new Array("hola", 2, true); // inicializa con valores
+
+        document.write(array3.length + "<br>"); // longitud del array
+        array3[20] = 1; // podemos asignar valores en cualquier posición del array (crea elementos undefined)
+        document.write(array3 + "<br>"); // imprime el array completo
+        document.write(array3.length + "<br>");
+        document.write(array3[array3.length - 1] + "<br>"); // último elemento del array
+
+        // Matriz (array de arrays, multinivel)
+        const matriz = [
+            [
+                0, 
+                [1, "hola"] // podemos añadir todos los niveles que sean necesarios
+            ], 
+            [
+                2, 
+                3
+            ]];
+
+        document.write(matriz[0][1][1]);
+
+        // podemos agregar elementos a un array tanto const como let
+        array1.push(5, "23", false); // añade al final del array
+        array1.unshift("pre", true); // añade al principio del array
+        let item = array1.pop(); // devuelve y elimina el último elemento del array
+        item = array1.shift(); // devuelve y elimina el primer elemento del array
+
+        // concatenar arrays genera un nuevo array con el contenido de los otros dos
+        let array5 = array1.concat(array4);
+
+        // estructura de función que permite recorrer un array: valor, índice y array
+        function valores(value, index, array) {
+            document.write("<br>" + index + " de " + array.length + ":" + value);
+        }
+
+        // array5.forEach(
+        //     (value, index, array) => document.write("<br>" + index + ":" + value)
+        // );
+
+        // función de iteración para cada elemento del array
+        array5.forEach(valores);
+
+        // mapeado: convierte elementos de un valor a otro
+        array5 = array5.map((value) => value + 1);
+
+        // filtro: devuelve sólo los elementos válidos según el predicado (función flecha)
+        array5 = array5.filter((value) => Number.isInteger(value));
+
+        // redución: realiza una operación concreta con todos los elementos del array (como la suma)
+        let suma = array5.reduce((v1, v2) => v1 + v2);
+
+        // podemos unir varios iteradores juntos para producir un resultado final
+        let resultado = array1
+            .map((v) => v * 3)
+            .filter((v) => v % 2 == 0)
+            .reduce((v1, v2) => v1 + v2); // suma los números pares filtrados y mapeados previamente
+
+        const datos = [
+            {
+                nombre: "pepe",
+                apellidos: "ruiz",
+                edad: 30
+            },
+            {
+                nombre: "ana",
+                apellidos: "martinez",
+                edad: 40
+            },
+            {
+                nombre: "luis",
+                apellidos: "perez",
+                edad: 23
+            }
+        ];
+
+        // ordenación personalizada con una función flecha (0=iguales, -1=valor menor, 1=valor mayor)
+        const datos2 = datos.sort((v1, v2) => {
+            return v1.nombre < v2.nombre ? -1 : 1;
+        });
+
+    </script>
+</head>
+
+</html>

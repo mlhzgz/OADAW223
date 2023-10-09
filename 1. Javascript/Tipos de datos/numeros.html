@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            // Calcular numeros y texto con todas las operaciones menos la suma
+            const numero = 1;
+            const numero2 = new Number(2);
+            const potencia = numero2 ** 3; // exponenciación
+
+            // Funciones de comprobación de valores
+            const division = potencia / "js";
+
+            if (Number.isNaN(division)) {
+                document.write("operación no válida<br>");
+            }
+
+            document.write(100 / 0); // Infinity
+            Number.isFinite(1 / 0); // true si no es infinito
+            Number.isInteger(1); // true si es un número entero
+            
+            // Funciones de formato numérico
+            let decimales = 9.0876;
+            decimales.toExponential(3); // "9.088e+0"
+            decimales.toFixed(2); // "9.09"
+            
+            // Funciones de conversión de cadena a número
+            parseInt("1234", 10); // conversión a entero indicando la base
+            parseInt("11111111", 2); // binario: 255
+            parseFloat("123.45"); // conversión a flotante
+        </script>
+    </head>
+</html>
