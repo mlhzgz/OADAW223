@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <script>
+            // excepciones
+            let numero = 1;
+
+            /*
+                Tipos de errores de sistema:
+
+                EvalError	    Error al ejecutar la función eval()
+                RangeError	    Error en un número "out of range" (fuera de rango)
+                ReferenceError	Referencia ilegal
+                SyntaxError	    Error de sintaxis
+                TypeError	    Error de tipo
+                URIError	    Error al llamar a encodeURI()
+            */
+
+            try {
+                document.write(numero.toLowerCase()); // error de sistema
+                throw "error"; // lanza un error con un valor, no hay clases de excepciones
+            } catch (err) {
+                err.name; // si es un error de sistema, indica el nobmre del error
+                err.message; // indica el mensaje generado por el sistema
+                document.write(err); // si es un error generado por el programador, muestra el valor lanzado
+            } finally {
+                console.log("finalmente");
+            }
+        </script>
+    </head>
+</html>

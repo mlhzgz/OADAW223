@@ -14,7 +14,8 @@
 
         // En Javascript podemos llamar a las funciones de forma libre, con o sin parámetros
         // Hay que controlar que los parámetros esperados sean válidos (definidos)
-        function nombre_funcion(par1, par2, par3) {
+        // Valor por defecto: un parámetro puede tener un valor en su declaración
+        function nombre_funcion(par1, par2, par3 = "") {
             par1 = par1 || 1; // valor por defecto: si un parámetro es undefined, podemos asignarle un valor antes de usarlo
 
             //if (par1 == undefined) par = 1;

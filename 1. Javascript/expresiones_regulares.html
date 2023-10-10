@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <script>
+            // Expresiones regulares
+            let texto = "Este es una cadena de texto";
+
+            // Localización de patrones en una cadena de texto
+            if (/to[ ]*/.test(texto)) {
+                console.log("comprobado");
+            } else {
+                console.log("no existe");
+            }
+
+            // Comprobación del formato de un texto (DNI)
+            let dni = "11111111-H";
+            console.log(/[1-9]{0,1}\d{1}\.?[0-9]{3}\.{0,1}[0-9]{3}\-{0,1}[A-H]{1}/.test(dni));
+
+            // Validación básica de datos de un formulario
+            function validar_nombre() {
+                const txtNombre = document.getElementById("txtNombre");
+                const valor = txtNombre.value.trim(); // eliminamos los espacios alrededor de la cadena
+                const re = /^[A-Z][a-zñá-ú]+ [A-Z][a-zñ]+ [A-Z][a-zñ]+$/;
+
+                if (re.test(valor)) {
+                    alert("El nombre es correcto");
+                } else {
+                    alert("El nombre no está bien escrito");
+                }
+            }
+
+            // validamos un número entero
+            function validar_numero(numero) {
+                return /^[0-9]+$/.test(numero);
+            }
+
+            console.log(validar_numero("12.34"));
+        </script>
+    </head>
+
+    <body>
+        Dame tu nombre completo (nombre de pila y apellidos): <input type="text" id="txtNombre" />
+        <input type="button" value="Validar" onclick="validar_nombre()" />
+    </body>
+</html>

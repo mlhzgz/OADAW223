@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            // conjunto de datos únicos (no repetibles)
+            let set = new Set([0,0,4,0,1,2,2,1]);
+
+            for (let item of set) {
+                document.write(item + "<br>");
+            }
+            
+            set.add(8); // añadir elemento
+            set.clear(); // borrar todos los elementos
+            set.delete(8); // borrar un elemento
+            set.has(8); // existe el elemento?
+            set.size; // tamaño
+            
+            // Mapa de datos (hashtable)
+            // la clave puede ser cualquier tipo de dato
+            let mapa = new Map(
+                ["nombre", "luis"],
+                ["apellidos", "ruiz"],
+                ["edad", 50]
+            );
+            mapa.get("nombre"); // leemos un dato del mapa
+            mapa.set("ciudad", "Zaragoza"); // modificamos o añadimos un dato del mapa
+        </script>
+    </head>
+</html>

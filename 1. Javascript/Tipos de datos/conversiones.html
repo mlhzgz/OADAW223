@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <script>
+            document.write("<pre>"); // genera una zona que respeta el formato duro (saltos de líneas, espacios, tabuladores, etc...)
+            document.writeln(typeof "00"); // tipos de datos
+            document.writeln(typeof 1);
+            document.writeln(typeof true);
+            document.writeln(typeof [].constructor); // devuelve "function Array()"
+            document.writeln(typeof {});
+            document.writeln(typeof Date.now());
+            document.write("</pre>");
+
+            // Conversiones de datos
+            String(2); // number -> str
+            String(true); // boolean -> str
+            Number("2"); // str -> number
+            Number("js"); // NaN
+            Number(true); // boolean -> number
+            Boolean("true"); // str -> boolean
+            Boolean(1); // number -> boolean
+
+            let numero = "1";
+            let numero2 = +numero; // convertir un número de texto en número
+        </script>
+    </head>
+</html>
