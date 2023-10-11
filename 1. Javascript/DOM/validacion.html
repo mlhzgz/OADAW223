@@ -1,0 +1,51 @@
+<html>
+    <head>
+        <script>
+            function validar_formulario() {
+                // Capturamos los valores y recortamos los espacios donde sea necesario
+                let nombre = document.getElementById("nombre").value.trim();
+                let edad = document.getElementById("edad").value.trim();
+                let ciudad = document.getElementById("ciudades").value;
+                let comentarios = document.getElementById("comentarios").value.trim();
+
+                // Podemos comprobar longitudes de datos
+                if (nombre.length == 0)
+                {
+                    alert("Debes introducir un nombre");
+                    return false;
+                }
+
+                // También podemos reconocer si el dato tiene el formato correcto
+                if (edad.length == 0 || !/^[0-9]{1,3}$/.test(edad)){
+                    alert("La edad es incorrecta");
+                    return false;
+                }
+
+                // En este caso, comprobamos que hayamos seleccionado una opción en un desplegable
+                if (ciudad == "") {
+                    alert("Debes indicar una ciudad");
+                    return false;
+                }
+
+                // Devolvemos true si los datos son correctos, y false si han habido fallos
+                alert("DAtos enviados al servidor");
+                return true;
+            }
+        </script>
+    </head>
+    <body>
+        <!-- onsubmit permite controlar si enviamos o no el formulario al servidor -->
+        <form action="datos.php" method="post" onsubmit="return validar_formulario()">
+            Nombre y apellidos: <input type="text" id="nombre"><br>
+            Edad: <input type="number" id="edad" min="1" max="100"><br>
+            Ciudad: <select id="ciudades">
+                <option value="">Elige una ciudad</option>
+                <option value="Zaragoza">Zaragoza</option>
+                <option value="Madrid">Madrid</option>
+                <option value="París">París</option>
+            </select><br>
+            Comentarios:<textarea id="comentarios"></textarea><br>
+            <input type="submit" value="Enviar">
+        </form>
+    </body>
+</html>
