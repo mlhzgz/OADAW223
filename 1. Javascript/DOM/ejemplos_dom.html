@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        .ejemplo {
+            color: brown;
+            margin-left: 100px;
+        }
+    </style>
+
+    <script>
+        // Función de carga de página (se ejecuta al terminar de renderizarse la página - evento onload)
+        function carga_pagina() {
+            let h1 = document.getElementsByTagName("h1");
+            h1[0].style.color = "red";
+
+            // innerHTML;
+            // innerText;
+            // outerHTML;
+            // outerText;
+
+            let parrafo = document.querySelector("p");
+            // Modificamos el contenido de la etiqueta, generando nuevos elementos HTML en su interior
+            //parrafo.innerHTML = "<span style='color:blue'>Esto es un span dentro de un párrafo</span>";
+
+            // Modificamos el contenido de la etiqueta, incluyendo texto en vez de elementos HTML
+            //parrafo.innerText = "<span style='color:blue'>Esto es un span dentro de un párrafo</span>";
+
+            // Borramos completamente el contenido de la etiqueta (pero sigue existiendo)
+            //parrafo.innerText = "";
+
+            // Borramos completamente la etiqueta, y esta deja de existir
+            //parrafo.outerText = "";
+
+            // Cambiamos la etiqueta por otra etiqueta diferente
+            //parrafo.outerHTML = "<span>Y lo cambio por un span</span>";
+
+            // Cambiamos la etiqueta por texto, la etiqueta deja de existir
+            //parrafo.outerText = "<span>Y lo cambio por un span</span>";
+
+            let span = document.querySelectorAll("div > span")[1];
+
+            // La etiqueta deja de verse, pero sigue ocupando espacio en la página
+            //span.style.visibility = "hidden";
+
+            // La etiqueta deja de verse, y no ocupa espacio en la página
+            //span.style.display = "none";
+
+            // La etiqueta ocupa espacio en la página y desplaza hacia abajo a las siguientes
+            //span.style.display = "block"
+
+            // Podemos incorporar varias clases a una etiqueta (incluso si no existen las clases)
+            span.className = "ejemplo clase1 clase2";
+
+            // Se añade una clase a la etiqueta
+            span.classList.add("clase3");
+
+            // Se elimina una clase en la etiqueta
+            span.classList.remove("clase3");
+
+            // Capturamos los elementos dentro de otro elemento
+            let spans = document.querySelectorAll("div > span");
+
+            // Recorremos los elementos para asignarles eventos
+            for (let _span of spans) {
+                // El ratón entra en el elemento
+                _span.onmouseenter = function () {
+                    this.style.color = "blue";
+                };
+
+                // El ratón sale del elemento
+                _span.onmouseleave = function () {
+                    this.style.color = "brown";
+                };
+
+                // Pulsamos sobre el elemento
+                _span.onclick = function () {
+                    alert(this.innerText);
+                }
+            }
+        }
+
+    </script>
+</head>
+
+<body onload="carga_pagina()">
+    <h1>Cabecera de la página</h1>
+
+    <p><span>Esto es un párrafo</span></p>
+
+    <div>
+        <span>Cabecera&nbsp; </span>
+        <span>Otro texto más</span>
+        <span>&nbsp;Coletilla</span>
+    </div>
+</body>
+
+</html>
