@@ -1,0 +1,49 @@
+<html>
+
+<head>
+    <script>
+        function cargar_pagina() {
+            const para = document.getElementsByTagName("p")[0];
+
+            // Adquirimos el objeto del padre
+            const parent = para.parentNode;//.style.backgroundColor = "red";
+
+            // Podemos visualizar todos los elementos hijos del padre
+            parent.childNodes.forEach((ch) => console.log(ch.innerText));
+
+            // Primer hijo del padre
+            parent.firstChild
+
+            // Último hijo del padre
+            parent.lastChild
+
+            // Elemento previo al actual
+            para.previousSibling
+
+            // Elemento posterior al actual
+            para.nextSibling
+
+            // construccion de objetos
+            const para2 = document.createElement("p");
+            para2.innerText = "Otro párrafo";
+            parent.appendChild(para2); // añadirmos el elemento a otro elemento (el padre)
+
+            // Para eliminar un elemento, borramos el elemento en si mismo
+            para2.remove();
+
+            // Creación de un nodo de texto
+            const texto = document.createTextNode("Nodo de texto");
+            parent.appendChild(texto);
+
+        }
+
+    </script>
+</head>
+
+<body onload="cargar_pagina()">
+    <div>
+        <p>Hola, que tal</p>
+    </div>
+</body>
+
+</html>

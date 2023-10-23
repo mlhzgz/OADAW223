@@ -1,0 +1,54 @@
+<html>
+    <head>
+        <script>
+            // Clases en Javascript
+            class Clase {
+                // Sólo puede crearse un constructor
+                constructor(nombre = "", edad = 0, localidad = "") {
+                    this.nombre = nombre;
+                    this.edad = edad;
+                    this.localidad = localidad;
+                }
+
+                // Los métodos no requieren de la palabra "function"
+                imprimir() {
+
+                }
+
+                poner_datos(nombre, edad) {
+                    this.nombre = nombre;
+                    this.edad = edad;
+                }
+
+                // Getter (propiedad de lectura)
+                get ciudad() {
+                    return this.localidad;
+                }
+
+                // Setter (propiedad de escritura)
+                set ciudad(localidad) {
+                    this.localidad = localidad;
+                }
+
+                // Pueden crearse métodos estáticos (de clase)
+                static metodoEstatico(){
+                    console.log("...");
+                }
+            };
+
+            // Herencia entre clases
+            class ClaseDerivada extends Clase {
+                constructor() {
+                    super();
+                    super.ciudad ="";
+                }
+            }
+
+            const obj = new Clase();
+            obj.ciudad = "MAdrid";
+            console.log(obj.ciudad);
+
+            Clase.metodoEstatico();
+        </script>
+    </head>
+</html>

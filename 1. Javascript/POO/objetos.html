@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <script>
+            // Objeto normal
+            const objeto = {
+                nombre:"pepe",
+                edad:34,
+                imprimir:function() {
+
+                }
+            }
+
+            objeto.imprimir();
+
+            // Función "clase" para crear objetos
+            // Su contenido da forma al objeto que se va a crear
+            // No es necesario devolver nada, sólo añadir elementos a "this"
+            function Clase(nombre = "", edad = 0, localidad = "") {
+                this.nombre = nombre;
+                this.edad = edad;
+                this.localidad = localidad;
+
+                this.imprimir = function() {
+                    console.log(nombre, edad, localidad);
+                }
+            }
+
+            const obj1 = new Clase();
+
+            obj1.edad = 45;
+            obj1.localidad = "Utebo";
+            obj1.imprimir();
+
+            // El prototipo permite añadir elementos a los objetos de una clase dada
+            Clase.prototype.poner_datos = function(nombre, edad) {
+                this.edad = edad;
+                this.nombre = nombre;
+            };
+
+            obj1.poner_datos("", 0);
+
+            // Pueden añadirse métodos a otras clases ya existentes, incluidas las del sistema
+            String.prototype.mayus = function() {
+                return this.toUpperCase();
+            };
+
+            "hola".mayus();
+        </script>
+    </head>
+</html>

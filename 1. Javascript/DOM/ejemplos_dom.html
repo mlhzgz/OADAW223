@@ -79,6 +79,51 @@
                     alert(this.innerText);
                 }
             }
+
+            // Este código permite controlar lo que escribimos 
+            // (el campo de texto sólo admite datos númericos)
+            const texto = document.getElementById("texto");
+
+            texto.onkeyup = function (evento) {
+                console.log(evento.key + " " + evento.keyCode);
+
+                // Si el caracter escrito no se corresponde con patrón, lo anulamos
+                if (!/[0-9]/.test(evento.key)) {
+                    this.value = this.value.replace(evento.key, "");
+                }
+            };
+
+            // onfocus permite reconocer si hemos entrado en un control de formulario
+            texto.onfocus = function () {
+                console.log("hemos entrado");
+                this.style.backgroundColor = "red";
+            };
+
+            // onblur permite reconocer si hemos salido de un control de formulario
+            texto.onblur = function () {
+                console.log("hemos salido");
+                this.style.backgroundColor = "white";
+            };
+
+            // Los eventos son aplicables a la ventana
+            window.onclick = function () {
+                //alert("hola");
+            };
+
+            // Gestores de eventos
+            function pulsa1() { console.log("pulsa 1"); }
+
+            function pulsa2() { console.log("pulsa 2"); }
+
+            // Podemos asignar varios gestores de eventos a un evento de un elemento DOM
+            texto.addEventListener("click", pulsa1);
+            texto.addEventListener("click", pulsa2);
+
+            // Podemos obrar un evento sólo si tenemos su controlador
+            texto.removeEventListener("click", pulsa1);
+
+            // Detectamos la carga de la página (puede codificarse múltiples veces)
+            document.body.addEventListener("load", () => { });
         }
 
     </script>
@@ -94,6 +139,8 @@
         <span>Otro texto más</span>
         <span>&nbsp;Coletilla</span>
     </div>
+
+    <input type="text" id="texto" />
 </body>
 
 </html>
