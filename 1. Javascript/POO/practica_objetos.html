@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            div {
+                margin: 5px;
+            }
+
+            .error {
+                color: red;
+                display: none;
+            }
+        </style>
+
+        <script src="class_vehiculo.js" type="text/javascript"></script>
+
+        <script>
+            function agregarVehiculo() {
+                document.getElementById("divDatos").style.display = "block";
+                vehiculoActual = new Vehiculo();
+                vehiculoActual.datosAFormulario();
+            }
+
+            function guardarDatos() {
+                document.getElementById("divDatos").style.display = "none";
+            }
+
+            function cargarPagina() {
+                document.getElementById("btnEnvio").onclick = guardarDatos;
+            }
+        </script>
+    </head>
+    <body onload="cargarPagina()">
+        <div>
+            <a href="javascript:void(0)" onclick="agregarVehiculo()">Agregar vehículo</a>
+        </div>
+        <div id="divDatos" style="display: none; margin-bottom: 15px;">
+            <h1>Datos del vehículo</h1>
+            <div>Modelo: <input type="text" id="txtModelo" /> <span id="lblErrorModelo" class="error">Debes introducir un modelo de vehículo</span></div>
+            <div>Fabricante: <input type="text" id="txtFabricante" /> <span id="lblErrorFabricante" class="error">Debes introducir un fabricante</span></div>
+            <div>Matrícula: <input type="text" id="txtMatricula" /> <span id="lblErrorMatricula" class="error"></span></div>
+            <div>Tipo: 
+                <select id="lstTipos">
+                    <option value="">Selecciona un tipo</option>
+                    <option value="utilitario">Utilitario</option>
+                    <option value="berlina">Berlina</option>
+                    <option value="motocicleta">Motocicleta</option>
+                </select> <span id="lblErrorTipo" class="error">Debes indicar un tipo de vehículo</span>
+            </div>
+            <div>Año: <input type="number" id="txtAño" min="2000" /> <span id="lblErrorAño" class="error"></span></div>
+            <div><button id="btnEnvio">Enviar datos</button></div>
+        </div>
+        <div id="divTabla" style="border: 1px solid black;">
+            <table id="tblListado" style="width: 600px;">
+                <tr>
+                    <th>Fabricante</th>
+                    <th>Modelo</th>
+                    <th>Matricula</th>
+                    <th>Tipo</th>
+                    <th>Año</th>
+                </tr>
+            </table>
+        </div>
+    </body>
+</html>
