@@ -10,7 +10,7 @@ class Vehiculo {
         this.año = "";
     }                
 
-    static llenarDatos() {
+    static llenarDatosDesdeFormulario() {
         const obj = new Vehiculo();
 
         obj.modelo = document.getElementById("txtModelo").value;
@@ -30,8 +30,47 @@ class Vehiculo {
         document.getElementById("txtAño").value = this.año;
     }
 
+    crearFilaDatos() {
+        const fila = document.createElement("tr");
+        
+        let col = document.createElement("td");
+        col.innerText = this.fabricante;
+        fila.appendChild(col);
+
+        col = document.createElement("td");
+        col.innerText = this.modelo;
+        fila.appendChild(col);
+
+        col = document.createElement("td");
+        //col.innerText = this.matricula;
+
+        const enlace = document.createElement("a");
+        enlace.href = "";
+        enlace.innerText = this.matricula;
+        col.appendChild(enlace);
+
+        col.style.textAlign = "center";
+        fila.appendChild(col);
+
+        col = document.createElement("td");
+        col.innerText = this.tipo;
+        col.style.textAlign = "center";
+        fila.appendChild(col);
+
+        col = document.createElement("td");
+        col.innerText = this.año;
+        col.style.textAlign = "center";
+        fila.appendChild(col);
+
+        return fila;
+    }
+
     static validarDatos() {
-        const vehiculo = Vehiculo.llenarDatos();
+        const vehiculo = Vehiculo.llenarDatosDesdeFormulario();
+
+        document.getElementById("lblErrorModelo").style.display = "none";
+        document.getElementById("lblErrorFabricante").style.display = "none";
+        document.getElementById("lblErrorTipo").style.display = "none";
 
         if (vehiculo.modelo.trim() == "") {
             document.getElementById("lblErrorModelo").style.display = "inline";
@@ -44,6 +83,7 @@ class Vehiculo {
         }
 
         const lblErrorMatricula = document.getElementById("lblErrorMatricula");
+        lblErrorMatricula.style.display = "none";
 
         if (vehiculo.matricula.trim() == "") {
             lblErrorMatricula.innerText = "Debes indicar una matrícula";
@@ -63,6 +103,7 @@ class Vehiculo {
         }
 
         const lblErrorAño = document.getElementById("lblErrorAño");
+        lblErrorAño.style.display = "none";
 
         if (vehiculo.año.trim() == "") {
             lblErrorAño.innerText = "Debe indicarse el año de fabricación";
@@ -70,7 +111,7 @@ class Vehiculo {
             return false;
         }
 
-        if (/[0-9]{4}/.test(vehiculo.año.trim())) {
+        if (!/[0-9]{4}/.test(vehiculo.año.trim())) {
             lblErrorAño.innerText = "El año de fabricación es incorrecto";
             lblErrorAño.style.display = "inline";
             return false;
