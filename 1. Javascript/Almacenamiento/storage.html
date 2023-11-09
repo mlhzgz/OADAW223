@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script>
+        // Almacenamiento persistente de datos
+        // localStorage -> almacenamiento permanente para un sitio web, independiente de la ventana o la solapa
+        // sessionStorage -> almacenamiento temporal mientras no se cierre la solapa donde se utiliza (al cerrar la solapa, desaparece la información)
+
+        // Almacenamiento de datos de cualquier tipo
+        localStorage.setItem("datos", [1, 23, 4]);
+
+        // Lectura de datos según el tipo almacenado
+        const array = localStorage.getItem("datos");
+
+        // En navegadores antiguos, puede ocurir que sea necesario convertir los datos almacenados de JSON a un objeto con JSON.parse()
+
+        // Los almacenamientos funcionan siguiendo la siguiente combinación o tripleta:
+        // protocolo-dominio-puerto
+
+        // Elimina un dato del almacenacmiento
+        localStorage.removeItem("datos");
+
+        // Podemos almacenar todo tipo de datos en distintas claves (como un mapa)
+        localStorage.setItem("edad", 20);
+        localStorage.setItem("nombre", "luis");
+        localStorage.setItem("localidad", "Zaragoza");
+        localStorage.setItem("ultimo_acceso", new Date());
+
+        // Podemos recorrir el contenido del almacenamiento con un bucle
+        for (let x = 0; x < localStorage.length; x++) {
+            console.log(localStorage.key(x), "=", localStorage.getItem(localStorage.key(x)));
+        }
+
+        // Para saber si hay una clave en el almacenamiento
+        if (localStorage.hasOwnProperty("datos"))
+            console.log("Existen los datos almacenados...");
+
+        // Otra forma de recorrer el almacenamiento
+        for (let key of Object.keys(localStorage)) {
+            console.log(key, "=", localStorage.getItem(key));
+        }
+
+        // Es posible saber si se ha modificado la colección
+        window.onstorage = function(event) {
+            // Propiedades del parámetro event:
+            // key: la clave que ha cambiado, (null si se llama .clear()).
+            // oldValue: el anterior valor (null si se añade una clave).
+            // newValue: el nuevo valor (null si se borra una clave).
+            // url: la url del documento donde ha pasado la actualización.
+            // storageArea: bien el objeto localStorage o sessionStorage, donde se ha producido la actualización.
+            console.log(event.key, " tiene un nuevo valor: " + event.newValue);
+        }
+
+        // JSON: JavaScript Object Notation
+        // JSON es la forma estándar de almacenar de forma persistente el contenido de los objetos en memoria de Javascript
+        // Puede intercambiarse con cualquier otro lenguaje que tenga funciones de conversión y generar datos en memoria en esos lenguajes
+
+        const datos = [
+                {
+                    nombre: "pepe",
+                    localidad: "madrid",
+                    edad: 45,
+                    activo: true
+                },
+                {
+                    "id_cliente": 1234,
+                    "cif": "12341234H",
+                    "telefonos": [
+                        "12341234",
+                        "43243432",
+                    ]
+                }
+            ];
+
+        // Convertimos un objeto en memoria a JSON con JSON.stringify()
+        console.log(JSON.stringify(datos));
+
+        // Podemos volver a convertir una cadena de texto JSON a un objeto en memoria con JSON.parse()
+        const array_parseado = JSON.parse("[1, 2, 3]");
+    </script>
+</head>
+
+</html>
