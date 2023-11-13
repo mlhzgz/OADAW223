@@ -3,6 +3,10 @@
 
 <head>
     <script>
+        // Funciones de cookies en Javascript
+
+        // Leer contenido de una cookie y devolver su valor
+        // (no se devuelven restricciones de la cookie)
         function getCookie(name) {
             let matches = document.cookie.match(new RegExp(
                 "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
@@ -10,6 +14,8 @@
             return matches ? decodeURIComponent(matches[1]) : undefined;
         }
 
+        // Genera o modifica una cookie ya existente
+        // Las restricciones deben ir siempre en minúsculas
         function setCookie(name, value, options = {}) {
             options = {
                 path: '/',
@@ -41,9 +47,10 @@
             });
         }
     
+        // Ejemplo de creación de cookie
         setCookie("nombre", "pepe", {
             "domain": "google.com"
-        })
+        });
     </script>
 </head>
 
