@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+/* 
+            setTimeout(); // ejecuta una acción tras un número de milisegundos
+            setInterval(); // ejecuta una acción cada cierto número de milisegundos
+            clearTimeout(); // borra la ejecución de la acción en curso
+            clearInterval(); // borra el cronómetro en ejecución
+ */
+
+            // Ejecuta un código tras cinco segundos
+            // const timeout = setTimeout(function(){
+            //     console.log("timeout");
+            // }, 5000);
+            // console.log("mensaje timeout");
+            // clearTimeout(timeout);
+
+            // Ejecuta un código CADA 5 segundos
+            //let numero = 0;
+
+            //setInterval(()=>{console.log("interval " + (++numero))}, 5000);
+
+            // Ejecución condicional de un código de forma asíncrona
+            let numero = 0;
+
+            function timeout() {
+                console.log("timeout " + (++numero));
+
+                if (numero < 6)
+                    setTimeout(timeout, 5000);
+            }
+
+            timeout();
+
+            // Versión INTERVAL
+            let hInterval;
+            
+            function interval() {
+                console.log("interval " + (++numero));
+
+                if (numero < 6)
+                    clearInterval(hInterval);
+            }
+
+            hInterval = setInterval(interval, 5000);
+        </script>
+    </head>
+</html>
