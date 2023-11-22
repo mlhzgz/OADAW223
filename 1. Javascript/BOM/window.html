@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            function abrirVentana() {
+                // El objeto ventana resultante (puede ser nulo) 
+                // permite el acceso al DOM y eventos de la nueva ventana
+                const ventana = window.open('https://google.com', // url para cargar (puede estar vacío)
+                    'ventana', // nombre de la ventana
+                    'top=100, left=100, width=300, height=300'); // características de la ventana
+            }
+        </script>
+    </head>
+    <body>
+        <button onclick="abrirVentana()">Botón</button>
+    </body>
+</html>
