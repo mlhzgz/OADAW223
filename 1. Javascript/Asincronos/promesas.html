@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script>
+        // Ejecución de operaciones callback:
+        // * funciones que llaman a otras funciones de forma dinámica
+        // * no sabemos qué ejecutará el callback
+        // * el resultado es ejecutado de forma inmediata
+        // * el callback puede intercambiarse por otros callback compatibles
+        function verOperacion(n1, n2, operacion) {
+            console.log("El resultado de la operación: ", operacion(n1, n2));
+        }
+
+        function suma(n1, n2) {
+            return n1 + n2;
+        }
+
+        // Ejemplos de ejecución de callbacks con la misma función
+        verOperacion(2, 2, suma);
+        verOperacion(3, 4, (n1, n2) => n1 * n2);
+
+        // Ejecución de callbacks para detectar éxitos y errores
+        // Cada callback se ejecutará en distintas circunstancias dependiendo del estado del código
+        // En operaciones asíncronas no pueden devolverse resultados; la única forma es por medio
+        // de callbacks
+        function operacion(n1, n2, exito, error) {
+            if (n1 > n2) {
+                exito(n1 * n2);
+            }
+            else {
+                error("n1 tiene que ser mayor que n2");
+            }
+        }
+
+        operacion(110, 2,
+            (valor) => {
+                console.log("El resultado es: ", valor);
+            },
+            (error) => {
+                console.log(error);
+            });
+
+        // Ejemplo de promesa desde un botón de formulario
+        function cargar() {
+            document.getElementById("boton").onclick = function () {
+                // La promesa se ejecuta en cuanto es creada
+                const promesa = new Promise((exito, fracaso) => {
+                    const n1 = document.getElementById("n1").value;
+                    const n2 = document.getElementById("n2").value;
+
+                    // Llamamos a los callbacks de la promesa dependiendo de las circunstancias
+                    if (n1.trim() == "" || n2.trim() == "")
+                        fracaso("No has indicado claramente los números");
+                    else
+                        exito(parseInt(n1) + parseInt(n2));
+                });
+
+                // Las comprobaciones se ejecutan cuando se termina de ejecutar la promesa
+                promesa.then(value => {
+                    console.log("El resultado es: ", value);
+                    return value;
+                })
+                    // Podemos ejecutar resultados concatenados
+                    .then(value => value + 1) 
+                    .then(value => console.log(value))
+                    // Si algo ha ido mal...
+                    .catch(razon => console.log("Ha ido mal por esto: ", razon));
+            };
+
+            // función de espera
+            const esperar = (ms) => {
+                return new Promise((exito, fracaso) => {
+                    setTimeout(() => {
+                        exito("ok");
+                    }, ms);
+                });
+            };
+
+            //esperar(5000).then(value => console.log("ejecutado"));
+
+            // Ejecutamos las promesas de forma consecutiva y cuando se han ejecutado
+            // todas se devuelve el resultado
+            // Promise.all dejará de ejecutarse cuando una promesa sea rechazada
+            // Devolverá los valores de todas las promesas aceptadas
+            Promise.all([esperar(1000), esperar(2000), esperar(3000)])
+                .then(respuestas => console.log(respuestas[1]));
+
+            // Promise.allSettled ejecutará todas las promesas consecutivamente
+            // Devolverá los estados de cada promesa para poder ser comprobadas
+            Promise.allSettled([esperar(1000), esperar(2000), esperar(3000)])
+               .then(respuestas => console.log(respuestas[1]));
+        }
+
+
+
+    </script>
+</head>
+
+<body onload="cargar()">
+    <input id="n1" type="text" /> + <input id="n2" type="text" /> <input id="boton" type="button" value="sumar" />
+</body>
+
+</html>
