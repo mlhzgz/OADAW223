@@ -1,0 +1,13 @@
+{
+    "nombre": "Pepe",
+    "localidad": "Zaragoza",
+    "edad": 23,
+    "telefonos": [
+        "976123456",
+        "666987654"
+    ],
+    "datos_acceso": {
+        "username": "pepelui",
+        "password": "kjsf90282js"
+    }
+}

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            let ajax = new XMLHttpRequest();
+            ajax.open("POST", "post.php");
+            ajax.onload = function() {
+                if (this.status == 200) // Todo ha ido bien
+                {
+                    console.log(this.responseURL);
+                    console.log(this.responseText);
+                    document.querySelector("#capa").innerHTML = this.responseText;
+                }
+                else {
+                    console.log("ha ocurrido un problema:",
+                        this.status, this.statusText);
+                }
+            };
+            //ajax.send();
+
+            ajax.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            ajax.send("nombre=Pepa&apellidos=Ruiz%20Domínguez");
+
+            // readyState:
+            /*
+                0: solicitud no inicializada
+                1: conexión establecida con el servidor
+                2: solicitud recibida
+                3: procesando solicitud
+                4: solicitud terminada / respuesta preparada
+            */
+        </script>
+    </head>
+    <body>
+        <div id="capa"></div>
+    </body>
+</html>
