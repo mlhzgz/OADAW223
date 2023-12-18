@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script>
+        // Función fetch() y funciones asíncronas
+
+        // Llamada GET (por defecto):
+        fetch("datos.json")
+            // primero devolvemos los datos como una promesa
+            .then(res => res.json())
+            // después se obtiene el dato como tal
+            .then(value => console.log(value))
+            // en caso de error de red
+            .catch(error=>console.log(error));
+
+        // Si debemos comprobar que la llamada ha sido correcta, el primer then()
+        // permite observar el estado de la devolución con los siguientes atributos:
+        // * .ok: indica si la devolución ha sido correcta
+        // * .status: código de error del servidor
+        // * .statusText: texto del código de error
+
+        // Configuración de llamada POST con envío de datos UrlEncoded
+        fetch("post.php", {
+            method: "POST", // indicamos el método
+            headers: { // cabeceras HTTP para el servidor
+                "Content-type": "application/x-www-form-urlencoded"
+            }, // datos a enviar
+            body: "nombre=Pepa&apellidos=Ruiz%20Domínguez"
+        })
+        .then(res => res.text()) // comprobamos y recuperamos los daots
+        .then(value => console.log(value)); // manejamos los datos como tales
+
+        // Asíncronos
+        // Una función asíncrona es el código que ejecutaríamos dentro de una promesa
+        async function funcionAsincrona() {
+            // esta llamada realizar una solicitud con fetch() y espera a que los datos 
+            // se hayan recibido correctamente
+            const p = await fetch("datos.json");
+
+            // Si todo ha ido bien, capturamos los datos
+            if (p.ok) {
+                // await espera a que se ejecute la promesa (sólo se puede usar en una función async)
+                const v = await p.json();
+                console.log(v);
+            }
+            else {
+                console.log("error", p.status);
+            }
+
+            // Opcionalmente podemos devolver el dato en forma de promesa
+            // (una función async genera una promesa como devolución de la función)
+            return v;
+        }
+
+        // Podemos llamar a la función asíncrona directamente en cualquier parte del código
+        funcionAsincrona();
+
+        // Si devolvemos datos, podemos usar then() para recuperarlos
+        //funcionAsincrona().then(v=>console.log(v));
+
+        // Ejemplo de como realizar una función "sleep" en Javascript
+        function esperar(ms) {
+            return new Promise((success) => setTimeout(() => success(null), ms));
+        }
+
+        async function sleep(ms) {
+            console.log("esperando...");
+            // Como await espera a que se termine de ejecutar la promesa, hace el efecto de esperar
+            // durante un número de milisegundos llamando a la función de la promesa
+            await esperar(ms);
+            console.log("espera terminada");
+        }
+
+        sleep(5000);
+    </script>
+</head>
+
+</html>
