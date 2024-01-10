@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            /* 
+                Acceso a datos XML vía AJAX:
+
+                Con Ajax: atributo responseXML
+                Con fetch(): debe convertirse el texto de respuesta con new DOMParser().parseFromString()
+
+                Los datos XML deben ser procesados de forma jerárquica y gestionando el acceso usando 
+                los nodos internos (usando listas children o childNodes) o por medio del acceso a las 
+                etiquetas internas (funciones getXXXXX).
+
+                Los nodos son un tipo de dato que no son lo mismo que los elementos. Por un lado,
+                los ChildNode proporcionan un acceso básico a los datos y los elementos HTMLElement 
+                proporcionan más información, como el acceso a los atributos (getAttributes()). 
+                En un nodo, es importante conocer el tipo de nodo para saber como reaccionar.
+                Los valores del atributo nodeType pueden ser:
+
+                1: elemento XML
+                2: atributo XML
+                3: texto
+                8: comentarios
+                9: documento
+            */
+
+            const ajax = new XMLHttpRequest();
+            ajax.open("GET", "https://zaragoza.es/sede/servicio/monumento/32.xml");
+            ajax.onload = function() {
+                if (this.status == 200) {
+                    var xml = this.responseXML;
+                    var nodos = xml.documentElement.childNodes;
+
+                    // recorremos los nodos
+                    for (let nodo of nodos) {
+                        console.log(nodo.nodeName, "(", nodo.nodeType, ")", ":", nodo.textContent);
+                    }
+
+                    // seleccionamos los nodos por nombre
+                    const id = xml.getElementsByTagName("id")[0].textContent;
+                    const titulo = xml.getElementsByTagName("title")[0].textContent;
+                    const descripcion = xml.getElementsByTagName("description")[0].textContent;
+                    const imagen = xml.getElementsByTagName("image")[0].textContent;
+
+                    document.getElementById("nodo_id").innerText = id;
+                    document.getElementById("nodo_title").innerHTML = titulo;
+                    document.getElementById("nodo_description").innerHTML = descripcion.replace("\n", "<br><br>").replace("\r", "<br><br>");
+                    document.getElementById("nodo_image").src = imagen;
+                }
+            };
+            ajax.send();
+        </script>
+    </head>
+    <body>
+        <table>
+            <tr>
+                <th>ID:</th>
+                <td id="nodo_id"></td>
+            </tr>
+            <tr>
+                <th>Título:</th>
+                <td id="nodo_title"></td>
+            </tr>
+            <tr>
+                <th>Descripción:</th>
+                <td id="nodo_description"></td>
+            </tr>
+            <tr>
+                <th>Imagen:</th>
+                <td><img id="nodo_image" width="200" /></td>
+            </tr>
+        </table>
+    </body>
+</html>
