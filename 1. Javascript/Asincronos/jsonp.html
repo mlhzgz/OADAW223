@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--
+            JSONP permite llamar a cualquier recurso en Internet como si de un módulo
+            Javascript se tratara, superando las posibles limitaciones de un contexto
+            de CORS (Cross-Origin Resource Sharing) del navegador.
+
+            Podemos llamar a un script directamente con la etiqueta <script>:
+        -->
+        <script src="jsonp.php?m=hello%20there"></script>
+        <script>
+            // Podemos generar dinámicamente una llamada a un recurso en la red por
+            // medio del DOM:
+            function get_jsonp() {
+                let script = document.createElement("script");
+                script.src = "jsonp.php?m=hola";
+                document.body.appendChild(script);
+            }
+        </script>
+    </head>
+    <body>
+        <button value="pulsar" onclick="get_jsonp()">pulsar</button>
+    </body>
+</html>

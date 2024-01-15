@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            // Un worker es un módulo de código que se va a ejecutar en paralelo a la
+            // página principal.
+            // Como se ejecuta en un contexto diferenciado, no se puede acceder a los objetos
+            // window, documento y parent. Tampoco se puede acceder a algunos atributos
+            // de XMLHttpRequest como responseXML.
+            // Tampoco se puede acceder a la información de otros contextos, con lo que todos
+            // los datos están aislados entre si.
+            // Los datos se pasan por copia entre contextos, es decir, se serializan y deserializan
+            // en cada contexto. Datos como XML no se pueden serializar, con lo que no se pueden
+            // transmitir entre contextos.
+
+            // Generamos un nuevo worker a partir de un módulo javascript y se pone
+            // en ejecución inmediatamente.
+            const w = new Worker("worker.js");
+
+            // postMessage envía información al worker en el contexto de la página principal.
+            w.postMessage(100);
+
+            // onmessage es el evento que recibe los datos enviados por el worker en la página
+            // principal.
+            w.onmessage = function(e) {
+                document.getElementById("spnContador").innerText = e.data;
+            }
+        </script>
+    </head>
+    <body>
+        <span id="spnContador">0</span>
+    </body>
+</html>
