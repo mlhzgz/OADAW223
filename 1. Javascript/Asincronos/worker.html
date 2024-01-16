@@ -25,6 +25,9 @@
             w.onmessage = function(e) {
                 document.getElementById("spnContador").innerText = e.data;
             }
+
+            // Si queremos cerrar un worker desde el programa principal usamos
+            // w.terminate();
         </script>
     </head>
     <body>

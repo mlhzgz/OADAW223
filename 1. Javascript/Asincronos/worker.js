@@ -1,3 +1,6 @@
+// Si necestamos usar scripts dentro del worker, podemo emplear la función importScripts()
+// importScripts('script1.js', 'script2.js', ...);
+
 // Dentro de un worker, podemos establecer toda nuestra ejecución, variables, clases, etc...
 let x = 0;
 
@@ -11,3 +14,6 @@ setInterval(function(){
 onmessage = function(e) {
     x = e.data; // atributo data devuelve los datos enviados por el otro contexto
 }
+
+// Si queremos cerrar un worker desde dentro, usamos
+// self.close();
