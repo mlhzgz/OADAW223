@@ -1,8 +1,8 @@
 {
     "compilerOptions": {
-        "target": "ES5",
-        "module": "CommonJS",
-        "sourceMap": true,
-        "outDir": "out"
+        "target": "ES5", // motor de JS objetivo de la compilación
+        "module": "CommonJS", // conjunto de instrucciones para la compilación
+        "sourceMap": true, // indica si se deben crear ficheros de mapa (para intellisense)
+        "outDir": "./out" // para que funcione debe compilarse en batch usando sólo "tsc"
     }
 }

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(geolocaliza, function(error){
+                    console.log(error.code, ",", error.message);
+                });
+            }
+
+            function geolocaliza(data) {
+                console.log(data.coords.latitude, ", ", data.coords.longitude);
+            }
+        </script>
+    </head>
+</html>
