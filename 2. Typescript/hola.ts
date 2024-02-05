@@ -32,7 +32,7 @@ function funcion(par1 : string | number | null) : string | null {
 
     // Si estamos seguros de que la variable NO ES NULA, podemos usar la exclamación
     // Typescript no nos va a permitir ejecutar un valor nulo ya en tiempo de compilación
-    let v2 = par1!.toString();
+    //let v2 = par1!.toString();
 
     console.log(par1?.toString());
 
