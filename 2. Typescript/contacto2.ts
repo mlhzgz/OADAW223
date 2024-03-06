@@ -13,6 +13,9 @@ class Contacto {
     private _cumpleaños: string = "";
     private _tipo: TipoContacto = TipoContacto.Amistad;
 
+    constructor();
+    constructor(nombre: string);
+    constructor(nombre: string, apellidos: string);
     constructor(nombre?: string, apellidos: string = "") {
         this._nombre = nombre ?? "";
         this._apellidos = apellidos;
@@ -88,53 +91,67 @@ class Contacto {
 
 
         if ((<string>txtNombre.val()).trim() == "") {
-            alert("nombre incorrecto");
+            txtNombre.css("background-color", "red");
             txtNombre.focus();
             contacto = null;
         }
         else {
             contacto!.nombre = txtNombre.val() as string;
+            txtNombre.css("background-color", "white");
         }
 
         if (contacto != null && (txtApellidos.val() as string).length == 0) {
-            alert("apellidos incorrectos");
+            txtApellidos.css("background-color", "red");
             txtApellidos.focus();
             contacto = null;
         }
-        else {
+        else if (contacto != null) {
             contacto!.apellidos = txtApellidos.val() as string;
+            txtApellidos.css("background-color", "white");
         }
 
         if (contacto != null && (txtDireccion.val() as string).length == 0) {
-            alert("dirección incorrecta");
+            txtDireccion.css("background-color", "red");
             txtDireccion.focus();
             contacto = null;
         }
-        else {
+        else if (contacto != null) {
             contacto!.direccion = txtDireccion.val() as string;
+            txtDireccion.css("background-color", "white");
         }
 
         if (contacto != null && (txtTelefono.val() as string).length == 0) {
-            alert("telefóno incorrecto");
+            txtTelefono.css("background-color", "red");
             txtTelefono.focus();
             contacto = null;
         }
-        else {
+        else if (contacto != null) {
             contacto!.telefono = txtTelefono.val() as string;
+            txtTelefono.css("background-color", "white");
         }
 
         if (contacto != null && (txtCumpleaños.val() as string).length == 0) {
-            alert("cumpleaños incorrecto");
+            txtCumpleaños.css("background-color", "red");
             txtCumpleaños.focus();
             contacto = null;
         }
-        else {
+        else if (contacto != null) {
             contacto!.cumpleaños = txtCumpleaños.val() as string;
+            txtCumpleaños.css("background-color", "white");
         }
+
+        if (contacto != null)
+            contacto!.tipo = <TipoContacto>listTipo.val();
 
         btnEnviar.show("slow");
 
         return contacto;
+    }
+
+    public enviar() : void {
+        $.post("...", this).done(()=>{
+            alert("datos enviados");
+        });
     }
 }
 
@@ -142,8 +159,41 @@ class ListaContactos {
     [telefono: string]: Contacto;
 }
 
-$(function() {
-    $("#btnEnviar").on("click", function() {
+$(function () {
+    $("#btnFormulario").on("click", function () {
+        //$("#formulario").toggle("fast");
+        $("#formulario").animate({
+            width:"100px"
+        });
+    });
+
+    $("#btnEnviar").on("click", function () {
+        const contacto = Contacto.validarFormulario();
+
+        if (contacto != null) {
+            alert("Formulario enviado con éxito");
+
+            $.get("URL_servidor?parametros", function (data) {
+
+            });
+
+            $.get("URL_servidor?parametros");
+
+            $.get("URL_servidor?parametros").done(function(data){
+
+            }).fail((error)=>{})
+            .always(()=>{});
+
+            $.ajax({});
+
+            $.getJSON("url", "fjdlsjfkdsl", function(){});
+            $.getScript("url script");
+
+            $.post("url", contacto, function(data) {
+
+            });
+
+        }
 
     });
 });
